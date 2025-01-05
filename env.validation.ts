@@ -1,25 +1,11 @@
-import { plainToInstance } from 'class-transformer';
-import { IsEnum, IsNumber, IsString, validateSync } from 'class-validator';
-
-enum Environment {
-  Development = 'development',
-  Production = 'production',
-  Test = 'test',
-  Provision = 'provision',
-}
+import { IsNumber, IsString, validateSync } from 'class-validator';
 
 class EnvironmentVariables {
-  @IsEnum(Environment)
-  NODE_ENV: Environment;
-
-  @IsNumber()
-  PORT: number;
+  @IsString()
+  DB_HOST: string;
 
   @IsNumber()
   DB_PORT: number;
-
-  @IsString()
-  DB_HOST: string;
 
   @IsString()
   DB_USERNAME: string;
@@ -35,15 +21,15 @@ class EnvironmentVariables {
 }
 
 export function validate(config: Record<string, unknown>) {
-//   console.log('config ', config);
-  const validatedConfig = plainToInstance(EnvironmentVariables, config, {
-    enableImplicitConversion: true,
-  });
-//   console.log(validatedConfig);
+  const validatedConfig = new EnvironmentVariables();
+  validatedConfig.DB_HOST = config.DB_HOST as string;
+  validatedConfig.DB_PORT = Number(config.DB_PORT);
+  validatedConfig.DB_USERNAME = config.DB_USERNAME as string;
+  validatedConfig.DB_PASSWORD = config.DB_PASSWORD as string;
+  validatedConfig.DB_NAME = config.DB_NAME as string;
+  validatedConfig.SECRET = config.SECRET as string;
 
-  const errors = validateSync(validatedConfig, {
-    skipMissingProperties: false,
-  });
+  const errors = validateSync(validatedConfig, { skipMissingProperties: false });
 
   if (errors.length > 0) {
     throw new Error(errors.toString());
