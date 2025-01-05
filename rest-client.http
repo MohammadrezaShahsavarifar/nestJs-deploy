@@ -1,0 +1,126 @@
+GET http://127.0.0.1:3000
+
+### Find All Song 
+GET http://127.0.0.1:3000/songs
+
+
+### find one songs
+GET http://localhost:3000/songs/3
+
+###update song
+PUT http://localhost:3000/songs/3
+Content-Type: application/json
+
+{
+    "title": "Aroos",
+    "artists":["wilson"],
+     "releasedDate" : "2021-09-08",
+    "duration" : "02:34",
+    "lyrics" : "lorem ipsum is mother fucker nessasury for testing"
+
+}
+
+###create Song
+POST http://localhost:3000/songs
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhaHJhbUBnbWFpbC5jb20iLCJ1c2VySWQiOjIsImFydGlzdElkIjoxLCJpYXQiOjE3MzU0ODk3NjIsImV4cCI6MTczNTU3NjE2Mn0.G-Jc86tzm4G9GRJvkWcdjwvAk2W7V4isNtgtPdY3B18
+
+{
+    "title": "Khoon Khorshid
+    ", 
+    "artists": [1],
+    "releasedDate" : "2024-11-10",
+    "duration" : "04:34",
+    "lyrics" : "this is a song that say every thing you need to hear"
+}
+
+###Delete song
+DELETE http://localhost:3000/songs/2
+
+###Create New Playlist
+POST http:localhost:3000/playlists
+Content-Type: application/json
+
+{
+    "name":"love",
+    "songs":[10,11,12,13,14],
+    "user":2
+
+}
+
+###Creaete New User
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+    "firstName": "aras",
+    "lastName": "arghavani",
+    "email": "aras@gmail.com",
+    "password": "12345"
+}
+
+
+### Api Key Shahin: 4bd6a40d-52e2-45d8-87e1-3cedd4ffc50a
+
+###Creaete New Artist
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+    "firstName": "bahram",
+    "lastName": "nooraie",
+    "email": "bahram@gmail.com",
+    "password": "12345"
+}
+
+###Login user
+POST http://localhost:3000/auth/login 
+Content-Type: application/json
+
+{
+    "email":"shahin@gmail.com",
+    "password":"12345"
+}
+
+###Login Artist
+POST http://localhost:3000/auth/login 
+Content-Type: application/json
+
+{
+    "email":"bahram@gmail.com",
+    "password":"12345"
+}
+
+###Access Token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYWhpbkBnbWFpbC5jb20iLCJzdWIiOjEsImlhdCI6MTczNTQ4NTgzNywiZXhwIjoxNzM1NTcyMjM3fQ.MqVJft9S8t-eHCxwDj1TJeOnOlqCR9asASud6YM9mNQ
+### Artist temp token:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhaHJhbUBnbWFpbC5jb20iLCJ1c2VySWQiOjIsImFydGlzdElkIjoxLCJpYXQiOjE3MzU0ODk3NjIsImV4cCI6MTczNTU3NjE2Mn0.G-Jc86tzm4G9GRJvkWcdjwvAk2W7V4isNtgtPdY3B18
+
+### profile
+
+GET http://localhost:3000/profile
+Authorization: Bearer  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhaHJhbUBnbWFpbC5jb20iLCJ1c2VySWQiOjIsImFydGlzdElkIjoxLCJpYXQiOjE3MzU0ODk3NjIsImV4cCI6MTczNTU3NjE2Mn0.G-Jc86tzm4G9GRJvkWcdjwvAk2W7V4isNtgtPdY3B18
+
+### enable 2fa
+GET http://localhost:3000/auth/enable-2fa
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYWhpbkBnbWFpbC5jb20iLCJ1c2VySWQiOjEsImlhdCI6MTczNTY1MzQzOSwiZXhwIjoxNzM1NzM5ODM5fQ.R4VP-MuI7dWoEgJ8VYX79z1mM0__GY5mjawI2k64FAw
+
+### validate 2fa token
+POST  http://localhost:3000/auth/validate-2fa
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYWhpbkBnbWFpbC5jb20iLCJ1c2VySWQiOjEsImlhdCI6MTczNTY1MzQzOSwiZXhwIjoxNzM1NzM5ODM5fQ.R4VP-MuI7dWoEgJ8VYX79z1mM0__GY5mjawI2k64FAw
+Content-Type: application/json
+
+{
+    "token":"317884"
+}
+
+### disable 2fa
+GET http://localhost:3000/auth/disable-2fa 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYWhpbkBnbWFpbC5jb20iLCJ1c2VySWQiOjEsImlhdCI6MTczNTY1MzQzOSwiZXhwIjoxNzM1NzM5ODM5fQ.R4VP-MuI7dWoEgJ8VYX79z1mM0__GY5mjawI2k64FAw
+
+
+###Access Profile
+GET http://localhost:3000/auth/profile 
+Authorization: Bearer 4bd6a40d-52e2-45d8-87e1-3cedd4ffc50a
+
+
+###test env variable
+GET http://localhost:3000/auth/test 
