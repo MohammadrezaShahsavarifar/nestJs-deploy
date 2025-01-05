@@ -2,34 +2,28 @@ import { IsNumber, IsString, validateSync } from 'class-validator';
 
 class EnvironmentVariables {
   @IsString()
-  DB_HOST: string;
+  DB_HOST: string = process.env.PGHOST;
 
   @IsNumber()
-  DB_PORT: number;
+  DB_PORT: number = Number(process.env.PGPORT);
 
   @IsString()
-  DB_USERNAME: string;
+  DB_USERNAME: string = process.env.PGUSER;
 
   @IsString()
-  DB_PASSWORD: string;
+  DB_PASSWORD: string = process.env.PGPASSWORD;
 
   @IsString()
-  DB_NAME: string;
+  DB_NAME: string = process.env.PGDATABASE;
 
   @IsString()
-  SECRET: string;
+  SECRET: string = process.env.SECRET;
 }
 
 export function validate(config: Record<string, unknown>) {
   console.log('Validating environment variables:', config);
 
   const validatedConfig = new EnvironmentVariables();
-  validatedConfig.DB_HOST = config.DB_HOST as string;
-  validatedConfig.DB_PORT = Number(config.DB_PORT);
-  validatedConfig.DB_USERNAME = config.DB_USERNAME as string;
-  validatedConfig.DB_PASSWORD = config.DB_PASSWORD as string;
-  validatedConfig.DB_NAME = config.DB_NAME as string;
-  validatedConfig.SECRET = config.SECRET as string;
 
   const errors = validateSync(validatedConfig, { skipMissingProperties: false });
 
