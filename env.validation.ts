@@ -21,6 +21,8 @@ class EnvironmentVariables {
 }
 
 export function validate(config: Record<string, unknown>) {
+  console.log('Validating environment variables:', config);
+
   const validatedConfig = new EnvironmentVariables();
   validatedConfig.DB_HOST = config.DB_HOST as string;
   validatedConfig.DB_PORT = Number(config.DB_PORT);
@@ -32,6 +34,7 @@ export function validate(config: Record<string, unknown>) {
   const errors = validateSync(validatedConfig, { skipMissingProperties: false });
 
   if (errors.length > 0) {
+    console.error('Validation errors:', errors);
     throw new Error(errors.toString());
   }
   return validatedConfig;
